@@ -33,6 +33,7 @@ func main() {
 }
 
 func startReq(v string) {
+	fmt.Print("starting campain: ")
 	url := mainURL + startCampain + v
 	client := http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
@@ -48,11 +49,12 @@ func startReq(v string) {
 	if res.StatusCode == 200 {
 		fmt.Println("success")
 	} else {
-		fmt.Println("request !OK")
+		log.Fatal(err)
 	}
 }
 
 func delNumbers(v string) {
+	fmt.Print("deleting numbers: ")
 	url := mainURL + clearResp + v
 	client := http.Client{}
 	req, _ := http.NewRequest("DELETE", url, nil)
@@ -68,11 +70,12 @@ func delNumbers(v string) {
 	if res.StatusCode == 200 {
 		fmt.Println("success")
 	} else {
-		fmt.Println("request !OK")
+		log.Fatal(err)
 	}
 }
 
 func stopReq(v string) {
+	fmt.Print("stopping campain: ")
 	url := mainURL + stopCampain + v
 	client := http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
@@ -88,11 +91,12 @@ func stopReq(v string) {
 	if res.StatusCode == 200 {
 		fmt.Println("success")
 	} else {
-		fmt.Println("request !OK")
+		log.Fatal(err)
 	}
 }
 
 func addRespondents(v string, n []string) {
+	fmt.Print("adding respondents: ")
 	r := []respondent{}
 	for _, s := range n {
 		r = append(r, respondent{s})
@@ -116,6 +120,7 @@ func addRespondents(v string, n []string) {
 	if res.StatusCode == 200 {
 		fmt.Println("success")
 	} else {
-		fmt.Println("request !OK")
+		fmt.Println(res.Body)
+		log.Fatal(err)
 	}
 }
